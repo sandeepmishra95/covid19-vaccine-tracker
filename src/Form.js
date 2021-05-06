@@ -1,30 +1,45 @@
 import Age from './Age';
 import Date from './Date';
+import SearchBy from './SearchBy';
+import State from './State';
+import District from './District';
+
 export default function Form({ onSubmit, onChange, formData, sending }) {
   return (
     <div className="mt-8 mx-auto w-full px-2">
       <form className="space-y-8 max-w-2xl mx-auto" onSubmit={onSubmit}>
-        <div>
-          <label
-            htmlFor="pincode"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Pincode(s)
+        <SearchBy value={formData.searchBy} onChange={onChange} />
+        {
+          formData.searchBy === "district" &&
+          <>
+            <State value={formData.state} onChange={onChange} />
+            <District state={formData.state} value={formData.district} onChange={onChange} />
+          </>
+        }{
+          formData.searchBy === "pincode" &&
+          <div>
+            <label
+              htmlFor="pincode"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Pincode(s)
           </label>
-          <div className="mt-1">
-            <input
-              onChange={onChange}
-              value={formData.pincode}
-              id="pincode"
-              name="pincode"
-              type="text"
-              placeholder="Enter one or more pincodes (comma separated)..."
-              required
-              maxLength={36}
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+            <div className="mt-1">
+              <input
+                onChange={onChange}
+                value={formData.pincode}
+                id="pincode"
+                name="pincode"
+                type="text"
+                placeholder="Enter one or more pincodes (comma separated)..."
+                required
+                maxLength={36}
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
           </div>
-        </div>
+
+        }
         <div>
           <label
             htmlFor="email"

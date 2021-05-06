@@ -7,7 +7,10 @@ import { getMaxDate, getMinDate } from './utils';
 
 export default function App() {
   const [formData, setFormData] = useState({
+    searchBy: "pincode",
     pincode: '',
+    state: "",
+    district: "",
     email: '',
     frequency: 'day',
     age: 'any',
@@ -52,6 +55,7 @@ export default function App() {
   const onChange = ({ target: { name, value, type, checked } }) => {
     setFormData((prevState) => ({
       ...prevState,
+      district: name === "state" ? "" : prevState.district,
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
