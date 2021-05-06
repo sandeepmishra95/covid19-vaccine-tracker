@@ -24,7 +24,7 @@ export const getDistricts = (stateId) => {
   const state = stateWiseDistrictData.find(
     (state) => state.stateId === stateId
   );
-  if(state) {
+  if (state) {
     return state.districts;
   } else {
     return [];

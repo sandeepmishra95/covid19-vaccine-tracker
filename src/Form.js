@@ -9,21 +9,24 @@ export default function Form({ onSubmit, onChange, formData, sending }) {
     <div className="mt-8 mx-auto w-full px-2">
       <form className="space-y-8 max-w-2xl mx-auto" onSubmit={onSubmit}>
         <SearchBy value={formData.searchBy} onChange={onChange} />
-        {
-          formData.searchBy === "district" &&
+        {formData.searchBy === 'district' && (
           <>
             <State value={formData.state} onChange={onChange} />
-            <District state={formData.state} value={formData.district} onChange={onChange} />
+            <District
+              state={formData.state}
+              value={formData.district}
+              onChange={onChange}
+            />
           </>
-        }{
-          formData.searchBy === "pincode" &&
+        )}
+        {formData.searchBy === 'pincode' && (
           <div>
             <label
               htmlFor="pincode"
               className="block text-sm font-medium text-gray-700"
             >
               Pincode(s)
-          </label>
+            </label>
             <div className="mt-1">
               <input
                 onChange={onChange}
@@ -38,8 +41,7 @@ export default function Form({ onSubmit, onChange, formData, sending }) {
               />
             </div>
           </div>
-
-        }
+        )}
         <div>
           <label
             htmlFor="email"
